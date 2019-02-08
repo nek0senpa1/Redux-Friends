@@ -65,10 +65,10 @@ export const addFriend = friend => dispatch => {
   };
   
 
-  export const updateFriend = friendID => dispatch => {
+  export const updateFriend = (friendID, friend) => dispatch => {
     dispatch({ type: UPDATE_FRIEND_START });
     axios
-      .put(`http://localhost:5000/api/friends/${friendID}`)
+      .put(`http://localhost:5000/api/friends/${friendID}`, friend)
       .then(response => {
         dispatch({
           type: UPDATE_FRIEND_SUCCESS,
