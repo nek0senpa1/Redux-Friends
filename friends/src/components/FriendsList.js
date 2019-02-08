@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 
-import { addFriend } from './../store/actions';
+import { getFriend, deleteFriend } from './../store/actions';
 
 
 class FriendsList extends React.Component {
@@ -12,7 +12,7 @@ class FriendsList extends React.Component {
 
  
   componentDidMount() {
-    this.props.addFriend();
+    this.props.getFriend();
     // call our action
   }
 
@@ -22,25 +22,40 @@ class FriendsList extends React.Component {
       
         <div>
 
-            <h1>Current Friends</h1>   
+            <h1>CURRENT FRIENDS</h1>  
+            <hr></hr> 
+            <div>
+                {this.props.friendos.map(item => {
+                    return(
+                      <div>
+                        <h3>{item.name}</h3>
+                        <h2>Age: {item.age}, E-Mail: {item.email}</h2>
+                        <p>------------------------------</p>
+                        <button onClick={e => {this.props.deleteFriend(item)}}>Delete Friend</button>
 
+                        <hr></hr>
+                        </div>
+                    )
+                })}
+            </div>
                   
         </div>
              
     );
   };
 
-}
+};
 
 
-const mapStateToProps = state => ({
-   
-    friendos: state.friends,
-  
-  });
+const mapStateToProps = state => {
+    return {
+      
+      friendos: state.friends
+    };
+  };
 
 
 export default connect(
   mapStateToProps,
-  { addFriend }
+  { getFriend, deleteFriend }
 )(FriendsList);

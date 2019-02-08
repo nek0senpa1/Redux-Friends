@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import FriendsList from './components/FriendsList';
+import CreateFriend from './components/CreateFriend';
 
 
 
@@ -19,9 +20,10 @@ class App extends Component {
         <header className="App-header">
           
           <h1>REDUX FRIENDS APP!</h1>
-
+          <FriendsList />
         </header>
-        <FriendsList />
+        <CreateFriend />
+        
       </div>
     );
   }
